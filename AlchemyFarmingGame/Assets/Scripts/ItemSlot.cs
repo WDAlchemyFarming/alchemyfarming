@@ -21,13 +21,18 @@ public class ItemSlot : MonoBehaviour
     public string title; //Item name
     public Sprite icon; //Item UI icon
     public string desc; //Description of the item
+    public string type; //What category of item this is
     public int stack; //How many max per stack
     public bool consummable; //Will item be deleted upon use?
+    
 
     [Header("Technical")]
+    public int bites; //How many uses this item has left
     public int quant = 1; //How many the player currently has
+    public int addQuant; //A special field used for adding extra items to a stack
     public bool itemUse; //Item scripts will reference this as a trigger to determine whether they should start
     public Sprite empty; //A blank sprite
+    public bool pickup; //Turns off some functionality if this is part of an item pickup
 
     private void Start()
     {
@@ -64,9 +69,9 @@ public class ItemSlot : MonoBehaviour
         } else
         {
             //If there is an item in this slot
-            if (icon != null)
+            if (icon != null && !pickup)
             {
-                //If the item has already passed along its values
+                //If the item has already passed along its values and it's not just a pickup slot
                 //Look up the UI slot and assign its icon
                 invUI.GetChild(index).GetChild(0).GetComponent<Image>().sprite = icon;
                 //FIX LATER WHEN HOTBAR & INV ARE DIFFERENT

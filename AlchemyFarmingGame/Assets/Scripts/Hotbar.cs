@@ -37,9 +37,9 @@ public class Hotbar : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            //If mouse scrolls forward
+            //If mouse scrolls backward
             //Switches sprite of old selection, adds 1 to currentSlot, switches sprite of new selection
             transform.GetChild(currentSlot).GetComponent<Image>().sprite = deselSprite;
             currentSlot++;
@@ -50,9 +50,9 @@ public class Hotbar : MonoBehaviour
             }
             transform.GetChild(currentSlot).GetComponent<Image>().sprite = selSprite;
 
-        } else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        } else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            //If mouse scrolls backward
+            //If mouse scrolls forward
             //Switches sprite of old selection, subtracts 1 from currentSlot, switches sprite of new selection
             transform.GetChild(currentSlot).GetComponent<Image>().sprite = deselSprite;
             currentSlot--;
